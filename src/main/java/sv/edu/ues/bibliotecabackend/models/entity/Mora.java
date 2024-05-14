@@ -2,6 +2,8 @@ package sv.edu.ues.bibliotecabackend.models.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,9 @@ public class Mora implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mora", nullable = false,unique = true)
     private Long id;
+
+    @NotNull
+    @Digits(integer = 10, fraction = 2)
     @Column(name = "monto", nullable = false, precision = 10, scale = 2)
     private BigDecimal monto;
 }

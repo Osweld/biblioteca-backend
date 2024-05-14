@@ -1,6 +1,9 @@
 package sv.edu.ues.bibliotecabackend.models.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,28 +25,41 @@ public class Material implements Serializable {
     @Column(name = "id_material", nullable = false,unique = true)
     private Long id;
 
-    @Column(name = "isbm", nullable = false,unique = true,length = 13)
+    @Size(min = 13,max = 13)
+    @Column(name = "isbm",unique = true,length = 13)
     private String isbm;
 
+    @NotBlank
+    @Size(min = 5,max = 100)
     @Column(name = "titulo",nullable = false,length = 100)
     private String titulo;
 
+    @NotNull
     @Column(name = "cantidad",nullable = false)
     private Integer cantidad;
 
+    @NotNull
+    @Size(min = 20, max = 500)
     @Column(name = "descripcion",nullable = false,length = 500)
     private String descripcion;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_idioma")
     private Idioma idioma;
-    @ManyToOne
+
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_autor")
     private Autor autor;
-    @ManyToOne
+
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
-    @ManyToOne
+
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_estado_material")
     private EstadoMaterial estadoMaterial;
 

@@ -2,6 +2,8 @@ package sv.edu.ues.bibliotecabackend.models.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,8 @@ public class Categoria implements Serializable {
     @Column(name = "id_categoria", nullable = false,unique = true)
     private Long id;
 
+    @NotBlank
+    @Size(min = 1, max = 60)
     @Column(name = "nombre", nullable = false,unique = true, length = 60)
     private String nombre;
 

@@ -2,6 +2,8 @@ package sv.edu.ues.bibliotecabackend.models.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,14 +27,18 @@ public class Pago implements Serializable {
     @Column(name = "id_pagos", nullable = false,unique = true)
     private Long id;
 
+    @NotNull
+    @Digits(integer = 10, fraction = 2)
     @Column(name = "monto", nullable = false, precision = 10, scale = 2)
     private BigDecimal monto;
 
+    @NotNull
     @Column(name = "fecha_pago", nullable = false)
     private LocalDateTime fechaPago;
 
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 }

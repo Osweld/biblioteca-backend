@@ -1,6 +1,7 @@
 package sv.edu.ues.bibliotecabackend.models.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,25 +24,30 @@ public class Prestamo  implements Serializable {
     @Column(name = "id_prestamo", nullable = false,unique = true)
     private Long id;
 
+    @NotNull
     @Column(name = "fecha_prestamo",nullable = false)
     private LocalDateTime fechaPrestamo;
 
     @Column(name = "fecha_entrega")
     private LocalDateTime fechaEntrega;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_miembro")
     private Usuario miembro;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_bibliotecario")
     private Usuario bibliotecario;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_material")
     private Material material;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_estado_prestamo")
     private EstadoPrestamo estadoPrestamo;
 }

@@ -2,6 +2,7 @@ package sv.edu.ues.bibliotecabackend.models.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,10 +25,12 @@ public class Inventario implements Serializable {
     @Column(name = "id_inventario", nullable = false,unique = true)
     private Long id;
 
+    @NotNull
     @Column(name = "stock", nullable = false)
     private Integer stock;
 
-    @OneToOne
+    @NotNull
+    @OneToOne(optional = false)
     @JoinColumn(name = "id_material")
     private Material material;
 }

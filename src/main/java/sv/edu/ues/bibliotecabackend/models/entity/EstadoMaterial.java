@@ -2,6 +2,8 @@ package sv.edu.ues.bibliotecabackend.models.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +12,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name="estato_material")
+@Table(name = "estato_material")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,6 +26,8 @@ public class EstadoMaterial implements Serializable {
     @Column(name = "id_estado_material",nullable = false,unique = true)
     private Long id;
 
+    @NotBlank
+    @Size(min = 5, max = 50)
     @Column(name = "estado",nullable = false,unique = true, length = 50)
     private String estado;
 }
