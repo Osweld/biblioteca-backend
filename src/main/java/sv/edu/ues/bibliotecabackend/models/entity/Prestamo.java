@@ -34,12 +34,12 @@ public class Prestamo  implements Serializable {
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_miembro")
-    private Usuario miembro;
+    private Persona miembro;
 
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_bibliotecario")
-    private Usuario bibliotecario;
+    private Persona bibliotecario;
 
     @NotNull
     @ManyToOne(optional = false)
