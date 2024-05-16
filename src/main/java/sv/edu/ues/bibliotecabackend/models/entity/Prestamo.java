@@ -25,8 +25,8 @@ public class Prestamo  implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "fecha_prestamo",nullable = false)
-    private LocalDateTime fechaPrestamo;
+    @Column(name = "fecha_inicio",nullable = false)
+    private LocalDateTime fechaInicio;
 
     @Column(name = "fecha_entrega")
     private LocalDateTime fechaEntrega;
