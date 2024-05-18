@@ -1,6 +1,7 @@
 package sv.edu.ues.bibliotecabackend.models.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -32,5 +33,6 @@ public class Inventario implements Serializable {
     @NotNull
     @OneToOne(optional = false)
     @JoinColumn(name = "id_material")
+    @JsonBackReference
     private Material material;
 }
