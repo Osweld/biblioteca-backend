@@ -39,7 +39,7 @@ public class Persona implements Serializable {
 
     @NotBlank
     @Size(min = 5, max = 50)
-    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
     @Column(name = "email",nullable = false,unique = true, length = 50)
     private String email;
 
@@ -49,7 +49,7 @@ public class Persona implements Serializable {
     private String telefono;
 
     @NotBlank
-    @Size(min = 9, max = 9)
+    @Pattern(regexp = "^\\d{8}-\\d{1}$")
     @Column(name = "dui",nullable = false,unique = true, length = 9)
     private String DUI;
 

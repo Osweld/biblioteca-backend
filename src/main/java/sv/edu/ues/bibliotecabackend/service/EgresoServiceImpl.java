@@ -42,7 +42,7 @@ public class EgresoServiceImpl implements EgresoService {
     @Transactional
     public Egreso updateEgreso(Long id, Egreso egreso) {
         Egreso egresoDB = egresoRepository.findById(id).orElseThrow();
-        egresoDB.setTipo(egreso.getTipo());
+        egresoDB.setTipoEgreso(egreso.getTipoEgreso());
         egresoDB.setMonto(egreso.getMonto());
         return egresoRepository.save(egresoDB);
     }

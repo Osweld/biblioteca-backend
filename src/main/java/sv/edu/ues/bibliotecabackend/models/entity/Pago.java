@@ -24,7 +24,7 @@ public class Pago implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pagos", nullable = false,unique = true)
+    @Column(name = "id_pago", nullable = false,unique = true)
     private Long id;
 
     @NotNull
@@ -39,6 +39,11 @@ public class Pago implements Serializable {
 
     @NotNull
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Persona usuario;
+
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_tipo_pago", nullable = false)
+    private TipoPago tipoPago;
 }

@@ -26,10 +26,6 @@ public class Egreso implements Serializable {
     @Column(name = "id_egreso", nullable = false,unique = true)
     private Long id;
 
-    @NotBlank
-    @Size(min = 1, max = 50)
-    @Column(name = "tipo", nullable = false, length = 50)
-    private String tipo;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
@@ -39,5 +35,10 @@ public class Egreso implements Serializable {
     @NotNull
     @Column(name = "fecha_pago", nullable = false)
     private LocalDateTime fechaPago;
+
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_tipo_egreso", nullable = false)
+    private TipoEgreso tipoEgreso;
 
 }
