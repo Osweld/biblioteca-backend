@@ -39,8 +39,8 @@ public class Pago implements Serializable {
 
     @NotNull
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Persona usuario;
+    @JoinColumn(name = "id_persona", nullable = false)
+    private Persona persona;
 
     @NotNull
     @ManyToOne(optional = false)

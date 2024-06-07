@@ -62,11 +62,9 @@ public class Persona implements Serializable {
     @Column(name = "fecha_nacimiento",nullable = false)
     private LocalDate fechaNacimiento;
 
-    @NotNull
     @Column(name = "ingreso", nullable = false)
     private LocalDate ingreso;
 
-    @NotNull
     @Column(name = "expiracion_menbresia",nullable = false)
     private LocalDate expiracionMembresia;
 
@@ -80,7 +78,6 @@ public class Persona implements Serializable {
     @JoinColumn(name = "id_genero",nullable = false)
     private Genero genero;
 
-    @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_estado_usuario",nullable = false)
     private EstadoUsuario estadoUsuario;

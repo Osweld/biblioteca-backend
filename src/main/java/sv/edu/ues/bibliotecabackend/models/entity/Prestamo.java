@@ -24,7 +24,6 @@ public class Prestamo  implements Serializable {
     @Column(name = "id_prestamo", nullable = false,unique = true)
     private Long id;
 
-    @NotNull
     @Column(name = "fecha_inicio",nullable = false)
     private LocalDateTime fechaInicio;
 
@@ -46,7 +45,7 @@ public class Prestamo  implements Serializable {
     @JoinColumn(name = "id_material")
     private Material material;
 
-    @NotNull
+    
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_estado_prestamo")
     private EstadoPrestamo estadoPrestamo;

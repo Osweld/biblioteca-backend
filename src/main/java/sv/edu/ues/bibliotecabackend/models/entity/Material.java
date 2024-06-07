@@ -27,8 +27,8 @@ public class Material implements Serializable {
     private Long id;
 
     @Size(min = 13,max = 13)
-    @Column(name = "isbm",unique = true,length = 13)
-    private String isbm;
+    @Column(name = "isbn",unique = true,length = 13)
+    private String isbn;
 
     @NotBlank
     @Size(min = 5,max = 100)

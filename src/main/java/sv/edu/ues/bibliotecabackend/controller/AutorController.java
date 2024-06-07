@@ -27,9 +27,14 @@ public class AutorController {
         return ResponseEntity.ok(autorService.getAutor(id));
     }
 
-    @GetMapping()
+    @GetMapping("/pagination")
     ResponseEntity<Page<Autor>> getAllAutorByPagination(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size){
         return ResponseEntity.ok(autorService.getAutorsByPagination(PageRequest.of(page, size)));
+    }
+
+    @GetMapping()
+    ResponseEntity<List<Autor>> getAllAutor(){
+        return ResponseEntity.ok(autorService.getAllAutor());
     }
 
     @GetMapping("/nombre/{nombre}")

@@ -56,7 +56,7 @@ public class MaterialServiceImpl implements MaterialService {
     @Transactional()
     public Material updateMaterial(Long id,Material material) {
         Material materialDB = materialRepository.findById(id).orElseThrow();
-        materialDB.setIsbm(material.getIsbm());
+        materialDB.setIsbn(material.getIsbn());
         materialDB.setAutor(material.getAutor());
         materialDB.setEstadoMaterial(material.getEstadoMaterial());
         materialDB.setCategoria(material.getCategoria());

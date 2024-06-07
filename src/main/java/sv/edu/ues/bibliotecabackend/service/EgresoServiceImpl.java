@@ -8,6 +8,8 @@ import sv.edu.ues.bibliotecabackend.exceptions.EgresoAlreadyExistsException;
 import sv.edu.ues.bibliotecabackend.models.entity.Egreso;
 import sv.edu.ues.bibliotecabackend.models.repository.EgresoRepository;
 
+import java.time.LocalDateTime;
+
 @Service
 public class EgresoServiceImpl implements EgresoService {
 
@@ -32,6 +34,7 @@ public class EgresoServiceImpl implements EgresoService {
     @Override
     @Transactional
     public Egreso saveEgreso(Egreso egreso) {
+        egreso.setFechaPago(LocalDateTime.now());
         if(egreso.getId() != null) {
             throw new EgresoAlreadyExistsException("Este egreso ya existe en la base de datos");
         }

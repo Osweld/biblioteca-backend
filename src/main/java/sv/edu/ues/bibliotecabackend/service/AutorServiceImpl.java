@@ -39,6 +39,12 @@ public class AutorServiceImpl implements AutorService{
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Autor> getAllAutor() {
+        return autorRepository.findAll();
+    }
+
+    @Override
     @Transactional
     public Autor saveAutor(Autor autor) {
         if(autor.getId() != null){

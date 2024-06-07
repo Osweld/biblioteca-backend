@@ -12,7 +12,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "estato_material")
+@Table(name = "estado_material")
 @Getter
 @Setter
 @NoArgsConstructor

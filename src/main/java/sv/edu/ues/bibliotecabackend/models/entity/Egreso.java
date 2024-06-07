@@ -32,7 +32,7 @@ public class Egreso implements Serializable {
     @Column(name = "monto", nullable = false, precision = 10, scale = 2)
     private BigDecimal monto;
 
-    @NotNull
+
     @Column(name = "fecha_pago", nullable = false)
     private LocalDateTime fechaPago;
 

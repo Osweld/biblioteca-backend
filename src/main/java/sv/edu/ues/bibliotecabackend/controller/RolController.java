@@ -21,6 +21,6 @@ public class RolController {
 
     @GetMapping
     ResponseEntity<List<Rol>> findAll() {
-        return ResponseEntity.ok(rolRepository.findAll());
+        return ResponseEntity.ok(rolRepository.findRolesUsuarios());
     }
 }

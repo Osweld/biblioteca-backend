@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface CostoMiembroRepository extends JpaRepository<CostoMiembro, Long> {
 
 
-    Optional<CostoMiembro> findByTipoPago(TipoPago tipoPago);
+    Optional<CostoMiembro> findByTipoPagoId(Long id);
 }

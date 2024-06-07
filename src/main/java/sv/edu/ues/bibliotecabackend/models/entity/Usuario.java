@@ -1,6 +1,7 @@
 package sv.edu.ues.bibliotecabackend.models.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +33,7 @@ public class Usuario implements Serializable {
     @Column(name = "username",nullable = false,length = 20)
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotBlank
     @Size(min = 50, max = 60)
     @Column(name = "password",nullable = false,length = 60)

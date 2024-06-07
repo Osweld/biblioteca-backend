@@ -11,6 +11,7 @@ public interface AutorService {
     Autor getAutor(Long id);
     Page<Autor> getAutorsByPagination(Pageable pageable);
     List<Autor> getAutorByText(String nombre);
+    List<Autor> getAllAutor();
     Autor saveAutor(Autor autor);
     Autor updateAutor(Long id, Autor autor);
     Autor deleteAutor(Long id);

@@ -23,16 +23,12 @@ public class CostoMiembroServiceImpl implements CostoMiembroService {
 
     @Override
     public CostoMiembro getCostoMiembroByTipoPago(Long idTipoPago) {
-        return costoMiembroRepository.findByTipoPago(
-                tipoPagoRepository.findById(idTipoPago).orElseThrow()
-        ).orElseThrow();
+        return costoMiembroRepository.findByTipoPagoId(idTipoPago).orElseThrow();
     }
 
     @Override
     public CostoMiembro updateCostoMiembroByTipopago(Long idTipoPago, CostoMiembro costoMiembro) {
-        CostoMiembro costoMiembroDB = costoMiembroRepository.findByTipoPago(
-                tipoPagoRepository.findById(idTipoPago).orElseThrow()
-        ).orElseThrow();
+        CostoMiembro costoMiembroDB = costoMiembroRepository.findByTipoPagoId(idTipoPago).orElseThrow();
         costoMiembroDB.setMonto(costoMiembro.getMonto());
         return costoMiembroRepository.save(costoMiembroDB);
     }

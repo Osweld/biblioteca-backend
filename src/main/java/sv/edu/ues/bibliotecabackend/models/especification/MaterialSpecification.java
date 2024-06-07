@@ -13,23 +13,34 @@ import java.util.List;
 @Component
 public class MaterialSpecification {
 
-    public Specification<Material> materialSpecification(Long idIdioma,Long idAutor, Long idCategoria, Long idEstadoMaterial) {
-        return (root, query, criteriaBuilder) ->{
-            root.fetch("inventario", JoinType.LEFT);
+    public Specification<Material> materialSpecification(Long idIdioma, Long idAutor, Long idCategoria, Long idEstadoMaterial) {
+        return (root, query, builder) -> {
+            // Asegúrate de que las asociaciones se obtienen correctamente
+            //root.fetch("inventario", JoinType.LEFT);
+
+
+            query.distinct(true);
+
             List<Predicate> predicates = new ArrayList<>();
 
+            if (idIdioma != null) {
+                predicates.add(builder.equal(root.get("idioma").get("id"), idIdioma));
+            }
 
+            if (idAutor != null) {
+                predicates.add(builder.equal(root.get("autor").get("id"), idAutor));
+            }
 
-            if(idIdioma != null)
-                predicates.add(criteriaBuilder.equal(root.get("idioma").get("id"),idIdioma));
-            if(idAutor != null)
-                predicates.add(criteriaBuilder.equal(root.get("autor").get("id"),idAutor));
-            if(idCategoria != null)
-                predicates.add(criteriaBuilder.equal(root.get("categoria").get("id"),idCategoria));
-            if(idEstadoMaterial != null)
-                predicates.add(criteriaBuilder.equal(root.get("estadoMaterial").get("id"),idEstadoMaterial));
+            if (idCategoria != null) {
+                predicates.add(builder.equal(root.get("categoria").get("id"), idCategoria));
+            }
 
-            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+            if (idEstadoMaterial != null) {
+                predicates.add(builder.equal(root.get("estadoMaterial").get("id"), idEstadoMaterial));
+            }
+
+            // Agrega la condición a la consulta
+            return builder.and(predicates.toArray(new Predicate[0]));
         };
     }
 }
