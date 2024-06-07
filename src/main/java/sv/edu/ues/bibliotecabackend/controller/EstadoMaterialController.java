@@ -1,6 +1,7 @@
 package sv.edu.ues.bibliotecabackend.controller;
 
 
+import jakarta.annotation.security.PermitAll;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class EstadoMaterialController {
     }
 
     @GetMapping
+    @PermitAll()
     ResponseEntity<List<EstadoMaterial>> findAll() {
         return ResponseEntity.ok(estadoMaterialRepository.findAll());
     }

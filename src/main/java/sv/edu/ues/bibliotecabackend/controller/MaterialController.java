@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import sv.edu.ues.bibliotecabackend.models.entity.Material;
 import sv.edu.ues.bibliotecabackend.service.MaterialService;
@@ -40,11 +41,13 @@ public class MaterialController {
     }
 
     @PostMapping
+    @Secured({"ROLE_BIBLIOTECARIO"})
     ResponseEntity<Material> saveMaterial(@RequestBody @Valid Material material) {
         return new ResponseEntity<>(materialService.saveMaterial(material), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
+    @Secured({"ROLE_BIBLIOTECARIO"})
     ResponseEntity<Material> updateMaterial(@PathVariable Long id, @RequestBody @Valid Material material) {
         return ResponseEntity.ok(materialService.updateMaterial(id, material));
     }

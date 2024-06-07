@@ -21,4 +21,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query("SELECT u FROM Usuario u WHERE u.persona.DUI = :dui AND u.persona.rol.id = 3")
     Optional<Usuario> findByPersonaDUIAndRol(String dui);
+
+    Optional<Usuario> findByUsername(String username);
 }
