@@ -23,4 +23,7 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
 
     @Query("SELECT p FROM Persona p WHERE p.rol.id = 1 OR p.rol.id = 2")
     Page<Persona> findAllByRoles(Pageable pageable);
+
+    @Query("SELECT COUNT(p) FROM Persona p WHERE p.rol.id IN (1, 2)")
+    Integer countByRoles();
 }

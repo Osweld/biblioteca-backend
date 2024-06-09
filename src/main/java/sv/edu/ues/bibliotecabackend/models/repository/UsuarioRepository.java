@@ -23,4 +23,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByPersonaDUIAndRol(String dui);
 
     Optional<Usuario> findByUsername(String username);
+    @Query("SELECT u FROM Usuario u WHERE u.persona.email = :email")
+    Optional<Usuario> findUsuarioByEmail(String email);
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import sv.edu.ues.bibliotecabackend.models.entity.Material;
 
@@ -15,6 +16,9 @@ public interface MaterialRepository extends JpaRepository<Material, Long> ,JpaSp
 
 
     Optional<Material> findById(Long id);
+
+    @Query("SELECT COUNT(m) FROM Material m WHERE m.estadoMaterial.id = 1")
+    Integer countMaterialesByEstados();
 
 
     Page<Material> findAll(Specification<Material> spec, Pageable pageable);

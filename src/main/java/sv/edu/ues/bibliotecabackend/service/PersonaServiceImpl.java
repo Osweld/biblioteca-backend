@@ -1,9 +1,11 @@
 package sv.edu.ues.bibliotecabackend.service;
 
+import jakarta.mail.MessagingException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sv.edu.ues.bibliotecabackend.email.services.EmailService;
 import sv.edu.ues.bibliotecabackend.exceptions.PersonaAlreadyExistsException;
 import sv.edu.ues.bibliotecabackend.models.entity.*;
 import sv.edu.ues.bibliotecabackend.models.enums.EstadoUsuarioEnum;
@@ -22,11 +24,13 @@ public class PersonaServiceImpl implements PersonaService {
     private final PersonaRepository personaRepository;
     private final PagoRepository  pagoRepository;
     private final CostoMiembroRepository costoMiembroRepository;
+    private final EmailService emailService;
 
-    public PersonaServiceImpl(PersonaRepository personaRepository, PagoRepository pagoRepository, CostoMiembroRepository costoMiembroRepository) {
+    public PersonaServiceImpl(PersonaRepository personaRepository, PagoRepository pagoRepository, CostoMiembroRepository costoMiembroRepository, EmailService emailService) {
         this.personaRepository = personaRepository;
         this.pagoRepository = pagoRepository;
         this.costoMiembroRepository = costoMiembroRepository;
+        this.emailService = emailService;
     }
 
     @Override
@@ -55,7 +59,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     @Transactional
-    public Persona savePersona(Persona persona) {
+    public Persona savePersona(Persona persona) throws MessagingException {
         if(persona.getId() != null)
             throw new PersonaAlreadyExistsException("Ya existe una persona con ese id");
         Persona personaDB;
@@ -79,6 +83,9 @@ public class PersonaServiceImpl implements PersonaService {
         }else{
             throw new IllegalArgumentException("El rol de la persona no es valido tiene que ser miembro o profesor");
         }
+
+
+        emailService.createAccount(persona.getEmail(), "Bienvenido a la Biblioteca Central de CentroAmerica",personaDB);
         return personaDB;
     }
 

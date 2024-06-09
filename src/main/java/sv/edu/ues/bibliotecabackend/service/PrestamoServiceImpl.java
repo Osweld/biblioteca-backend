@@ -118,7 +118,7 @@ public class PrestamoServiceImpl implements PrestamoService {
                     findByTipoPagoId(TipoPagoEnum.MORA.getId()).orElseThrow();
 
 
-            long tiempoDePrestamo = ChronoUnit.DAYS.between(prestamoDB.getFechaEntrega(),LocalDateTime.now());
+            long tiempoDePrestamo = ChronoUnit.DAYS.between(prestamoDB.getFechaEntrega().toLocalDate(),LocalDateTime.now().toLocalDate());
 
             if(tiempoDePrestamo > 7){
                 tiempoDePrestamo = 7;
@@ -198,7 +198,7 @@ public class PrestamoServiceImpl implements PrestamoService {
                 pagoMora.setFechaPago(LocalDateTime.now());
                 CostoMiembro costoMiembroMora = costoMiembroRepository.
                         findByTipoPagoId(TipoPagoEnum.MORA.getId()).orElseThrow();
-                long tiempoDePrestamo = ChronoUnit.DAYS.between(prestamo.getFechaEntrega(), LocalDateTime.now());
+                long tiempoDePrestamo = ChronoUnit.DAYS.between(prestamo.getFechaEntrega().toLocalDate(), LocalDateTime.now().toLocalDate());
 
                 if (tiempoDePrestamo > 7) {
                     tiempoDePrestamo = 7;

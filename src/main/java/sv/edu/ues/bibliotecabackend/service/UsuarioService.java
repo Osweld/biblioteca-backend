@@ -1,5 +1,6 @@
 package sv.edu.ues.bibliotecabackend.service;
 
+import jakarta.mail.MessagingException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import sv.edu.ues.bibliotecabackend.models.dto.PasswordDTO;
@@ -17,6 +18,7 @@ public interface UsuarioService {
     Usuario save(Usuario usuario);
     Usuario updateUsuario(Long id, Usuario usuario);
     Usuario updatePassword(Long id, PasswordDTO passwordDTO);
+    void resetPassword(String email) throws MessagingException;
 
 
 }

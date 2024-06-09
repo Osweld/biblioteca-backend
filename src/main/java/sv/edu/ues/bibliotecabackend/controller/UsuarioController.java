@@ -1,5 +1,7 @@
 package sv.edu.ues.bibliotecabackend.controller;
 
+import jakarta.annotation.security.PermitAll;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import sv.edu.ues.bibliotecabackend.models.dto.PasswordDTO;
 import sv.edu.ues.bibliotecabackend.models.entity.Usuario;
 import sv.edu.ues.bibliotecabackend.service.UsuarioService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/usuario")
@@ -55,6 +60,15 @@ public class UsuarioController {
     @Secured({"ROLE_BIBLIOTECARIO"})
     ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario usuario) {
         return ResponseEntity.ok(usuarioService.updateUsuario(id,usuario));
+    }
+
+    @GetMapping("reset-password/{email}")
+    @PermitAll()
+    ResponseEntity<Map<String, String>> resetPassword(@PathVariable String email) throws MessagingException {
+        usuarioService.resetPassword(email);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Email enviado correctamente");
+        return ResponseEntity.ok(response);
     }
 
 

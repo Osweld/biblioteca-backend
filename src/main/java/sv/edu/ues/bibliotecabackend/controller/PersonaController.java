@@ -1,5 +1,6 @@
 package sv.edu.ues.bibliotecabackend.controller;
 
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,7 +48,7 @@ public class PersonaController {
 
     @PostMapping()
     @Secured({"ROLE_BIBLIOTECARIO"})
-    ResponseEntity<Persona> save(@RequestBody @Valid Persona persona) {
+    ResponseEntity<Persona> save(@RequestBody @Valid Persona persona) throws MessagingException {
         return new ResponseEntity<>(personaService.savePersona(persona), HttpStatus.CREATED);
     }
 
