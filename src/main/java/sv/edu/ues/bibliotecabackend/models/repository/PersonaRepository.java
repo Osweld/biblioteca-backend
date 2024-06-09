@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import sv.edu.ues.bibliotecabackend.models.entity.Persona;
 import sv.edu.ues.bibliotecabackend.models.entity.Rol;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface PersonaRepository extends JpaRepository<Persona, Long> {
@@ -26,4 +28,7 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
 
     @Query("SELECT COUNT(p) FROM Persona p WHERE p.rol.id IN (1, 2)")
     Integer countByRoles();
+
+    @Query("SELECT p FROM Persona p WHERE p.expiracionMembresia = :yesterday AND (p.rol.id = 1 OR p.rol.id = 2)")
+    List<Persona> findByExpiracionMembresiaYesterday(@Param("yesterday") LocalDate yesterday);
 }

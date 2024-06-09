@@ -115,7 +115,8 @@ public class UsuarioServiceImpl implements UsuarioService{
             throw new IllegalArgumentException("Los usuarios solo son validos para bibliotecarios");
         }
         usuario.setPersona(personaDB);
-        usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+        String encodedPassword = bCryptPasswordEncoder.encode(usuario.getPassword());
+        usuario.setPassword(encodedPassword);
         return usuarioRepository.save(usuario);
     }
 

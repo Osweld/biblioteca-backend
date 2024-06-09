@@ -3,6 +3,7 @@ package sv.edu.ues.bibliotecabackend.config;
 import org.quartz.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import sv.edu.ues.bibliotecabackend.job.DesactivacionUsuarioJob;
 import sv.edu.ues.bibliotecabackend.job.NotificationJob;
 import sv.edu.ues.bibliotecabackend.job.PrestamoMorosoJob;
 import sv.edu.ues.bibliotecabackend.job.UsuarioSancionadoJob;
@@ -58,6 +59,24 @@ public class QuartzConfig {
                 .forJob(prestamoMorosoJobDetail)
                 .withIdentity("prestamoMorosoTrigger")
                 .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(1, 0))
+                .build();
+    }
+
+
+    @Bean
+    public JobDetail DesactivacionUsuarioJobDetail() {
+        return JobBuilder.newJob(DesactivacionUsuarioJob.class)
+                .withIdentity("desactivacionUsuarioJob")
+                .storeDurably()
+                .build();
+    }
+
+    @Bean
+    public Trigger DesactivacionUsuarioTrigger(JobDetail prestamoMorosoJobDetail) {
+        return TriggerBuilder.newTrigger()
+                .forJob(prestamoMorosoJobDetail)
+                .withIdentity("desactivacionUsuarioTrigger")
+                .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(4, 0))
                 .build();
     }
 }
