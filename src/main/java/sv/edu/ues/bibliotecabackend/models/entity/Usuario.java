@@ -35,7 +35,6 @@ public class Usuario implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotBlank
-    @Size(min = 50, max = 60)
     @Column(name = "password",nullable = false,length = 60)
     private String password;
 
